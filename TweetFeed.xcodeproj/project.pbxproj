@@ -16,6 +16,7 @@
 		2212BACA2B5FFF0B006FCF8E /* TweetFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212BAC92B5FFF0B006FCF8E /* TweetFeedTests.swift */; };
 		2212BAD42B5FFF0B006FCF8E /* TweetFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212BAD32B5FFF0B006FCF8E /* TweetFeedUITests.swift */; };
 		2212BAD62B5FFF0B006FCF8E /* TweetFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212BAD52B5FFF0B006FCF8E /* TweetFeedUITestsLaunchTests.swift */; };
+		22E969932B60005B008F9D00 /* TestRemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969922B60005B008F9D00 /* TestRemoteFeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2212BACF2B5FFF0B006FCF8E /* TweetFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2212BAD32B5FFF0B006FCF8E /* TweetFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedUITests.swift; sourceTree = "<group>"; };
 		2212BAD52B5FFF0B006FCF8E /* TweetFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		22E969922B60005B008F9D00 /* TestRemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRemoteFeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				2212BAC92B5FFF0B006FCF8E /* TweetFeedTests.swift */,
+				22E969922B60005B008F9D00 /* TestRemoteFeedLoader.swift */,
 			);
 			path = TweetFeedTests;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E969932B60005B008F9D00 /* TestRemoteFeedLoader.swift in Sources */,
 				2212BACA2B5FFF0B006FCF8E /* TweetFeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
