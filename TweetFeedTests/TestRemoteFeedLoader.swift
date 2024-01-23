@@ -7,6 +7,13 @@
 
 import XCTest
 
-final class TestRemoteFeedLoader: XCTestCase {
+final class RemoteFeedLoader {
     
+}
+
+final class TestRemoteFeedLoader: XCTestCase {
+    func test_Init_RemoteFeedLoader_Success() {
+        let feedLoader = RemoteFeedLoader()
+        XCTAssertNotNil(feedLoader)
+    }
 }
