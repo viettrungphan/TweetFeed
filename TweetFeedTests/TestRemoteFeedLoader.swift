@@ -50,7 +50,10 @@ final class TestRemoteFeedLoader: XCTestCase {
 
 extension TestRemoteFeedLoader {
     func makeSUT() -> RemoteFeedLoader {
-        let loader = RemoteFeedLoader()
+        let network = NetworkTest()
+        XCTAssertNotNil(network)
+        
+        let loader = RemoteFeedLoader(network: network)
         trackForMemoryLeaks(loader)
         return loader
     }

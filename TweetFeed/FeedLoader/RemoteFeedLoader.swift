@@ -8,6 +8,12 @@
 import Foundation
 
 final class RemoteFeedLoader: FeedLoader {
+    private let network: any Network
+    
+    init(network: any Network) {
+        self.network = network
+    }
+    
     enum RemoteError: Error {
         case any
     }
