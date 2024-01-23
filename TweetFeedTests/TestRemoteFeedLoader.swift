@@ -11,8 +11,8 @@ struct FeedItem {
 }
 
 final class RemoteFeedLoader {
-    func fetchFeed() -> [FeedItem] {
-        return []
+    func fetchFeed(onSuccess: ([FeedItem])->Void) {
+        onSuccess([])
     }
 }
 
@@ -25,8 +25,13 @@ final class TestRemoteFeedLoader: XCTestCase {
     func test_fetchFeed_Success() {
         let feedLoader = self.makeSUT()
         
-        let feed = feedLoader.fetchFeed()
-        XCTAssertNotNil(feed)
+        let exp = self.expectation(description: "Expect load feed success")
+        
+        feedLoader.fetchFeed(onSuccess: { feed in
+            XCTAssertNotNil(feed)
+            exp.fulfill()
+        })        
+        self.wait(for: [exp], timeout: 1)
     }
 }
 
