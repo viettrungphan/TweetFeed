@@ -40,9 +40,14 @@ final class TestRemoteFeedLoader: XCTestCase {
         feedLoader.isSuccess = true
         let exp = self.expectation(description: "Expect load feed success")
         
-        feedLoader.fetchFeed(onComplete: { feed in
-            XCTAssertNotNil(feed)
-            exp.fulfill()
+        feedLoader.fetchFeed(onComplete: { result in
+            switch result {
+            case .success(let feed):
+                XCTAssertNotNil(feed)
+                exp.fulfill()
+            case .failure(_):
+                assert(true, "Should not fall here")
+            }
         })
         self.wait(for: [exp], timeout: 1)
     }
@@ -52,8 +57,8 @@ final class TestRemoteFeedLoader: XCTestCase {
         feedLoader.isSuccess = false
         let exp = self.expectation(description: "Expect load feed failed")
         
-        feedLoader.fetchFeed(onComplete: { feed in
-            switch feed {
+        feedLoader.fetchFeed(onComplete: { result in
+            switch result {
             case .failure(let error):
                 XCTAssertNotNil(error)
                 exp.fulfill()
