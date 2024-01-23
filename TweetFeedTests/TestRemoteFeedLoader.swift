@@ -7,10 +7,14 @@
 
 import XCTest
 
+protocol FeedLoader {
+    func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void)
+}
+
 struct FeedItem {
 }
 
-final class RemoteFeedLoader {
+final class RemoteFeedLoader: FeedLoader {
     var isSuccess = false
     func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void) {
         if isSuccess {
