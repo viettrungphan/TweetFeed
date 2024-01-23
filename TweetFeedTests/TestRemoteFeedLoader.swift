@@ -7,32 +7,6 @@
 
 import XCTest
 
-protocol FeedLoader {
-    func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void)
-}
-
-struct FeedItem {
-}
-
-final class RemoteFeedLoader: FeedLoader {
-    var isSuccess = false
-    func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void) {
-        if isSuccess {
-            onComplete(.success([]))
-        } else {
-            onComplete(.failure(self.anyError()))
-        }
-    }
-    
-    func anyError() -> Error {
-        Error.any
-    }
-}
-
-enum Error: Swift.Error {
-    case any
-}
-
 final class TestRemoteFeedLoader: XCTestCase {
     func test_Init_RemoteFeedLoader_Success() {
         let feedLoader = self.makeSUT()
