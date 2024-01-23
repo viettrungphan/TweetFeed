@@ -7,5 +7,5 @@
 
 import Foundation
 
-struct FeedItem {
+struct FeedItem: Decodable {
 }
