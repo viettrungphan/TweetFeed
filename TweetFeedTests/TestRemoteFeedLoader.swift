@@ -76,6 +76,8 @@ final class TestRemoteFeedLoader: XCTestCase {
 
 extension TestRemoteFeedLoader {
     func makeSUT() -> RemoteFeedLoader {
-        RemoteFeedLoader()
+        let loader = RemoteFeedLoader()
+        trackForMemoryLeaks(loader)
+        return loader
     }
 }
