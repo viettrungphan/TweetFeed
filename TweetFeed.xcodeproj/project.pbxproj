@@ -25,6 +25,7 @@
 		22E969A42B60124F008F9D00 /* NetworkingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969A32B60124F008F9D00 /* NetworkingTest.swift */; };
 		22E969A62B601354008F9D00 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969A52B601354008F9D00 /* Network.swift */; };
 		22E969A72B601358008F9D00 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969A52B601354008F9D00 /* Network.swift */; };
+		22E969A92B60F704008F9D00 /* TestLocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969A82B60F704008F9D00 /* TestLocalFeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		22E9699F2B60110A008F9D00 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		22E969A32B60124F008F9D00 /* NetworkingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTest.swift; sourceTree = "<group>"; };
 		22E969A52B601354008F9D00 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		22E969A82B60F704008F9D00 /* TestLocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocalFeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				2212BAC92B5FFF0B006FCF8E /* TweetFeedTests.swift */,
 				22E969922B60005B008F9D00 /* TestRemoteFeedLoader.swift */,
 				22E969A32B60124F008F9D00 /* NetworkingTest.swift */,
+				22E969A82B60F704008F9D00 /* TestLocalFeedLoader.swift */,
 			);
 			path = TweetFeedTests;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				22E969932B60005B008F9D00 /* TestRemoteFeedLoader.swift in Sources */,
 				22E969A42B60124F008F9D00 /* NetworkingTest.swift in Sources */,
 				22E969962B60040B008F9D00 /* XCTest+MemoryLeakTracking.swift in Sources */,
+				22E969A92B60F704008F9D00 /* TestLocalFeedLoader.swift in Sources */,
 				22E9699E2B60101B008F9D00 /* FeedLoader.swift in Sources */,
 				22E969A12B60111F008F9D00 /* RemoteFeedLoader.swift in Sources */,
 				2212BACA2B5FFF0B006FCF8E /* TweetFeedTests.swift in Sources */,
