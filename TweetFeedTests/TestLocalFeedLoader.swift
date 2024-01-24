@@ -8,10 +8,10 @@
 import XCTest
 
 final class LocalFeedLoader: FeedLoader {
-    var localData:[FeedItem] = []
+    var mockLocalData:[FeedItem] = []
     
     func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
-        onComplete(.success(localData))
+        onComplete(.success(mockLocalData))
     }
 }
 
@@ -45,7 +45,7 @@ final class TestLocalFeedLoader: XCTestCase {
         let exp = self.expectation(description: "Expect Local Storage had cache data, return cache data")
         
         let mockLocalData = self.mockLocalData()
-        feedLoader.localData = mockLocalData
+        feedLoader.mockLocalData = mockLocalData
         
         feedLoader.fetchFeed { result in
             switch result {
