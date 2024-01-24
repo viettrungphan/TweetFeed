@@ -42,6 +42,7 @@ final class TestLocalFeedLoader: XCTestCase {
 extension TestLocalFeedLoader {
     func makeSUT() -> LocalFeedLoader {
         let feedLoader = LocalFeedLoader()
+        trackForMemoryLeaks(feedLoader)
         return feedLoader
     }
 }
