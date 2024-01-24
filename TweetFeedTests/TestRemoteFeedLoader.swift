@@ -8,9 +8,6 @@
 import XCTest
 
 final class TestRemoteFeedLoader: XCTestCase {
-    enum RemoteError: Error {
-        case any
-    }
     
     func test_Init_RemoteFeedLoader_Success() {
         let feedLoader = self.makeSUT()
@@ -57,12 +54,25 @@ final class TestRemoteFeedLoader: XCTestCase {
         let (feedLoader, network) = self.makeSUT()
                 
         feedLoader.fetchFeed(onComplete: { _ in })
-        let validNumberOfCallcount = 1
-        XCTAssertNotNil(network.requests.count == validNumberOfCallcount)
+        let validNumberOfCallCount = 1
+        XCTAssertNotNil(network.requests.count == validNumberOfCallCount)
     }
     
+    func test_fetchFeedTwice_NotCause_SideEffects() {
+        let (feedLoader, network) = self.makeSUT()
+                
+        feedLoader.fetchFeed(onComplete: { _ in })
+        feedLoader.fetchFeed(onComplete: { _ in })
+        
+        let validNumberOfCallCount = 2
+        XCTAssertNotNil(network.requests.count == validNumberOfCallCount)
+    }
 }
 
+//MARK: - Test Helpers
+private enum RemoteError: Error {
+    case any
+}
 extension TestRemoteFeedLoader {
     func makeSUT() -> (RemoteFeedLoader, NetworkTest) {
         let network = NetworkTest()
