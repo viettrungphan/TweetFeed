@@ -45,7 +45,7 @@ final class TestLocalFeedLoader: XCTestCase {
         self.wait(for: [exp], timeout: 1)
     }
     
-    func test_Storage_Has_Cache_ReturnCache() {
+    func test_FetchFeed_Has_Cache_ReturnCache() {
         let (feedLoader, storage) = self.makeSUT()
         
         let exp = self.expectation(description: "Expect Local Storage had cache data, return cache data")
@@ -63,12 +63,25 @@ final class TestLocalFeedLoader: XCTestCase {
             }
         }
         self.wait(for: [exp], timeout: 1)
-
+    }
+    
+    func test_FetchFeed_Not_Cause_Side_Effect() {
+        let (feedLoader, storage) = self.makeSUT()
+                
+        let mockLocalData = self.mockLocalData()
+        storage.cacheFeed(mockLocalData)
+        
+        feedLoader.fetchFeed { _ in }
+        
+        let validNumberOfCallCount = 1
+        
+        XCTAssertEqual(storage.spyNumberOfGetCallCount, validNumberOfCallCount)
+        XCTAssertEqual(storage.spyNumberOfCacheCallCount, validNumberOfCallCount)
     }
 }
 
 extension TestLocalFeedLoader {
-    func makeSUT() -> (LocalFeedLoader, Storage) {
+    func makeSUT() -> (LocalFeedLoader, LocalStorageMock) {
         let storage = LocalStorageMock()
         let feedLoader = LocalFeedLoader(storage: storage)
         trackForMemoryLeaks(feedLoader)
