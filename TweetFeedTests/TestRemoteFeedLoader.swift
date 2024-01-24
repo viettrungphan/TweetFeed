@@ -52,6 +52,15 @@ final class TestRemoteFeedLoader: XCTestCase {
         
         XCTAssertNotNil(receivedError)
     }
+    
+    func test_fetchFeed_NotCause_SideEffects() {
+        let (feedLoader, network) = self.makeSUT()
+                
+        feedLoader.fetchFeed(onComplete: { _ in })
+        let validNumberOfCallcount = 1
+        XCTAssertNotNil(network.requests.count == validNumberOfCallcount)
+    }
+    
 }
 
 extension TestRemoteFeedLoader {
