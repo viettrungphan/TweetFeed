@@ -8,4 +8,5 @@
 import Foundation
 
 struct FeedItem: Decodable {
+    let id: UUID
 }
