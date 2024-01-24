@@ -9,5 +9,5 @@ import Foundation
 
 protocol Network {
     associatedtype DecodeData
-    func request(url: String, onComplete: @escaping (Result<DecodeData, Error>)->Void)
+    func request(url: URL, onComplete: @escaping (Result<DecodeData, Error>)->Void)
 }

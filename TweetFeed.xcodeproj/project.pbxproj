@@ -96,10 +96,10 @@
 		2212BAB12B5FFF09006FCF8E /* TweetFeed */ = {
 			isa = PBXGroup;
 			children = (
-				22E969A22B601223008F9D00 /* Networking */,
-				22E969982B600F40008F9D00 /* FeedLoader */,
 				2212BAB22B5FFF09006FCF8E /* AppDelegate.swift */,
 				2212BAB42B5FFF09006FCF8E /* SceneDelegate.swift */,
+				22E969A22B601223008F9D00 /* Networking */,
+				22E969982B600F40008F9D00 /* FeedLoader */,
 				2212BAB62B5FFF09006FCF8E /* ViewController.swift */,
 				22E9699B2B600FFE008F9D00 /* FeedItem.swift */,
 				2212BAB82B5FFF09006FCF8E /* Main.storyboard */,
