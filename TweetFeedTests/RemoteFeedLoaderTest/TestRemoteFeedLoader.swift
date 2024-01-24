@@ -74,8 +74,8 @@ private enum RemoteError: Error {
     case any
 }
 extension TestRemoteFeedLoader {
-    func makeSUT() -> (RemoteFeedLoader, NetworkTest) {
-        let network = NetworkTest()
+    func makeSUT() -> (RemoteFeedLoader, NetworkMock) {
+        let network = NetworkMock()
         XCTAssertNotNil(network)
         
         let loader = RemoteFeedLoader(url: anyURL(), network: network)

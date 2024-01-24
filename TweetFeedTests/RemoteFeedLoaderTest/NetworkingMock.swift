@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class NetworkTest: FeedLoaderNetworking {
+final class NetworkMock: FeedLoaderNetworking {
     
     var requests: [(Result<[FeedItem], Error>) -> Void] = []
     
