@@ -15,13 +15,13 @@ final class LocalFeedLoader: FeedLoader {
 
 final class TestLocalFeedLoader: XCTestCase {
     func test_Init_Loader_Success() {
-        let feedLoader = LocalFeedLoader()
+        let feedLoader = self.makeSUT()
         
         XCTAssertNotNil(feedLoader)
     }
     
     func test_Init_NewFeedLoader_ShouldReturn_EmptyFeed() {
-        let feedLoader = LocalFeedLoader()
+        let feedLoader = self.makeSUT()
         
         let exp = self.expectation(description: "Expect Init new LocalFeedLoader should return an Empty feed")
         
@@ -36,5 +36,12 @@ final class TestLocalFeedLoader: XCTestCase {
             }
         }
         self.wait(for: [exp], timeout: 1)
+    }
+}
+
+extension TestLocalFeedLoader {
+    func makeSUT() -> LocalFeedLoader {
+        let feedLoader = LocalFeedLoader()
+        return feedLoader
     }
 }
