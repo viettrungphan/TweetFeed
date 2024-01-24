@@ -8,53 +8,67 @@
 import XCTest
 
 final class TestRemoteFeedLoader: XCTestCase {
+    enum RemoteError: Error {
+        case any
+    }
+    
     func test_Init_RemoteFeedLoader_Success() {
         let feedLoader = self.makeSUT()
         XCTAssertNotNil(feedLoader)
     }
     
     func test_fetchFeed_Success() {
-        let feedLoader = self.makeSUT()
-        feedLoader.isSuccess = true
-        let exp = self.expectation(description: "Expect load feed success")
+        let (feedLoader, network) = self.makeSUT()
+        
+        var receivedFeedItem: [FeedItem]? = nil
         
         feedLoader.fetchFeed(onComplete: { result in
             switch result {
             case .success(let feed):
-                XCTAssertNotNil(feed)
-                exp.fulfill()
+                receivedFeedItem = feed
             case .failure(_):
                 assert(true, "Should not fall here")
             }
         })
-        self.wait(for: [exp], timeout: 1)
+        
+        network.requests[0](.success([]))
+        XCTAssertNotNil(receivedFeedItem)
     }
     
     func test_fetchFeed_Failed() {
-        let feedLoader = self.makeSUT()
-        feedLoader.isSuccess = false
-        let exp = self.expectation(description: "Expect load feed failed")
+        let (feedLoader, network) = self.makeSUT()
+        var receivedError: Error? = nil
         
         feedLoader.fetchFeed(onComplete: { result in
             switch result {
             case .failure(let error):
-                XCTAssertNotNil(error)
-                exp.fulfill()
+                receivedError = error
             case .success(_):
                 assert(true, "Should not fall here")
             }
         })
-        self.wait(for: [exp], timeout: 1)
+        
+        network.requests[0](.failure(self.anyError()))
+        
+        XCTAssertNotNil(receivedError)
     }
 }
 
 extension TestRemoteFeedLoader {
-    func makeSUT() -> RemoteFeedLoader {
+    func makeSUT() -> (RemoteFeedLoader, NetworkTest) {
         let network = NetworkTest()
         XCTAssertNotNil(network)
         
-        let loader = RemoteFeedLoader(network: network)
+        let loader = RemoteFeedLoader(url: anyURL(), network: network)
         trackForMemoryLeaks(loader)
-        return loader
+        return (loader, network)
+    }
+    
+    func anyURL() -> URL {
+        URL(string: "https://any_url.com")!
+    }
+    
+    func anyError() -> Error {
+        RemoteError.any
     }
 }

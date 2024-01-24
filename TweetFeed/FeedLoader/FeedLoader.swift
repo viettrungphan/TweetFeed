@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FeedLoader {
-    func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void)
+    func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>)->Void)
 }

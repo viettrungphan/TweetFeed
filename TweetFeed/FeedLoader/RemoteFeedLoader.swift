@@ -7,27 +7,23 @@
 
 import Foundation
 
-final class RemoteFeedLoader: FeedLoader {
-    private let network: any Network
-    
-    init(network: any Network) {
-        self.network = network
-    }
-    
-    enum RemoteError: Error {
-        case any
-    }
-    var isSuccess = false
+//Set type contraint
+protocol FeedLoaderNetworking: Network where DecodeData == [FeedItem] {
+}
 
-    func fetchFeed(onComplete: (Result<[FeedItem], Error>)->Void) {
-        if isSuccess {
-            onComplete(.success([]))
-        } else {
-            onComplete(.failure(self.anyError()))
-        }
+final class RemoteFeedLoader: FeedLoader {
+        
+    private let network: any FeedLoaderNetworking
+    private let url: URL
+    
+    init(url: URL, network: any FeedLoaderNetworking) {
+        self.network = network
+        self.url = url
     }
     
-    func anyError() -> Error {
-        RemoteError.any
+    func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>)->Void) {
+        network.request(url: url) { result in
+            onComplete(result)
+        }
     }
 }
