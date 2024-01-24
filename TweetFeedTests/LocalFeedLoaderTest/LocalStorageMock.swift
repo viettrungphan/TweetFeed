@@ -8,10 +8,12 @@
 import Foundation
 
 final class LocalStorageMock: Storage {
+    private var cache: [FeedItem] = []
     func cacheFeed(_ feed: [FeedItem]) {
+        self.cache = feed
     }
     
     func getFeed() -> [FeedItem] {
-        return []
+        return cache
     }
 }

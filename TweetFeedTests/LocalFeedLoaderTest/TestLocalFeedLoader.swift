@@ -8,22 +8,28 @@
 import XCTest
 
 final class LocalFeedLoader: FeedLoader {
-    var mockLocalData:[FeedItem] = []
+    
+    private let storage:Storage
+    
+    init(storage: Storage) {
+        self.storage = storage
+    }
     
     func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
-        onComplete(.success(mockLocalData))
+        onComplete(.success(storage.getFeed()))
     }
 }
 
 final class TestLocalFeedLoader: XCTestCase {
     func test_Init_Loader_Success() {
-        let feedLoader = self.makeSUT()
+        let (feedLoader, storage) = self.makeSUT()
         
         XCTAssertNotNil(feedLoader)
+        XCTAssertNotNil(storage)
     }
     
     func test_Init_NewFeedLoader_ShouldReturn_EmptyFeed() {
-        let feedLoader = self.makeSUT()
+        let (feedLoader, _) = self.makeSUT()
         
         let exp = self.expectation(description: "Expect Init new LocalFeedLoader should return an Empty feed")
         feedLoader.fetchFeed { result in
@@ -40,12 +46,12 @@ final class TestLocalFeedLoader: XCTestCase {
     }
     
     func test_Storage_Has_Cache_ReturnCache() {
-        let feedLoader = self.makeSUT()
+        let (feedLoader, storage) = self.makeSUT()
         
         let exp = self.expectation(description: "Expect Local Storage had cache data, return cache data")
         
         let mockLocalData = self.mockLocalData()
-        feedLoader.mockLocalData = mockLocalData
+        storage.cacheFeed(mockLocalData)
         
         feedLoader.fetchFeed { result in
             switch result {
@@ -62,10 +68,11 @@ final class TestLocalFeedLoader: XCTestCase {
 }
 
 extension TestLocalFeedLoader {
-    func makeSUT() -> LocalFeedLoader {
-        let feedLoader = LocalFeedLoader()
+    func makeSUT() -> (LocalFeedLoader, Storage) {
+        let storage = LocalStorageMock()
+        let feedLoader = LocalFeedLoader(storage: storage)
         trackForMemoryLeaks(feedLoader)
-        return feedLoader
+        return (feedLoader, storage)
     }
     
     func anyFeedItem() -> FeedItem {
