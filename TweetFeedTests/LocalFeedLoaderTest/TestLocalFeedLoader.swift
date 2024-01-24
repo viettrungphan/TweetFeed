@@ -7,19 +7,6 @@
 
 import XCTest
 
-final class LocalFeedLoader: FeedLoader {
-    
-    private let storage:Storage
-    
-    init(storage: Storage) {
-        self.storage = storage
-    }
-    
-    func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
-        onComplete(.success(storage.getFeed()))
-    }
-}
-
 final class TestLocalFeedLoader: XCTestCase {
     func test_Init_Loader_Success() {
         let (feedLoader, storage) = self.makeSUT()
