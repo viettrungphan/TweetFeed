@@ -73,10 +73,27 @@ final class TestLocalFeedLoader: XCTestCase {
         
         feedLoader.fetchFeed { _ in }
         
-        let validNumberOfCallCount = 1
+        let validNumberOfCacheCallCount = 1
+        let validNumberOfGetCallCount = 1
         
-        XCTAssertEqual(storage.spyNumberOfGetCallCount, validNumberOfCallCount)
-        XCTAssertEqual(storage.spyNumberOfCacheCallCount, validNumberOfCallCount)
+        XCTAssertEqual(storage.spyNumberOfCacheCallCount, validNumberOfCacheCallCount)
+        XCTAssertEqual(storage.spyNumberOfGetCallCount, validNumberOfGetCallCount)
+    }
+    
+    func test_FetchFeedTwice_Not_Cause_Side_Effect() {
+        let (feedLoader, storage) = self.makeSUT()
+                
+        let mockLocalData = self.mockLocalData()
+        storage.cacheFeed(mockLocalData)
+        
+        feedLoader.fetchFeed { _ in }
+        feedLoader.fetchFeed { _ in }
+        
+        let validNumberOfCacheCallCount = 1
+        let validNumberOfGetCallCount = 2
+        
+        XCTAssertEqual(storage.spyNumberOfCacheCallCount, validNumberOfCacheCallCount)
+        XCTAssertEqual(storage.spyNumberOfGetCallCount, validNumberOfGetCallCount)
     }
 }
 
