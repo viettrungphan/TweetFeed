@@ -7,20 +7,6 @@
 
 import XCTest
 
-
-final class TweetFeedViewModel {
-    
-    private let feedLoader: FeedLoader
-    
-    init(feedLoader: FeedLoader) {
-        self.feedLoader = feedLoader
-    }
-    
-    func loadFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
-        self.feedLoader.fetchFeed(onComplete: onComplete)
-    }
-}
-
 final class TestTweetFeedViewModel: XCTestCase {
     func test_Init_Should_Success() {
         let viewModel = self.makeSUT(feedLoader: self.emptyFeedLoader())
