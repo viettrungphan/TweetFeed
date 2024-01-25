@@ -24,7 +24,7 @@ final class TweetFeedViewModel {
 
 final class TestTweetFeedViewModel: XCTestCase {
     func test_Init_Should_Success() {
-        let viewModel = TweetFeedViewModel()
+        let viewModel = self.makeSUT()
         XCTAssertNotNil(viewModel)
     }
     
@@ -48,7 +48,7 @@ final class TestTweetFeedViewModel: XCTestCase {
     }
     
     func test_LoadFeed_Failed() {
-        let viewModel = TweetFeedViewModel()
+        let viewModel = self.makeSUT()
         viewModel.mockIsSuccess = false
         let exp = self.expectation(description: "Expect load feed failed")
         
@@ -63,5 +63,12 @@ final class TestTweetFeedViewModel: XCTestCase {
         })
         
         self.wait(for: [exp], timeout: 1)
+    }
+}
+
+extension TestTweetFeedViewModel {
+    func makeSUT() -> TweetFeedViewModel {
+        let viewModel = TweetFeedViewModel()
+        return viewModel
     }
 }
