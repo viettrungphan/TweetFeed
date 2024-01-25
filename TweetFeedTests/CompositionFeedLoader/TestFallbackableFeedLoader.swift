@@ -54,11 +54,30 @@ final class TestFallbackableFeedLoader: XCTestCase {
         XCTAssertEqual(remoteFeedLoader.numberOfCallCount(), 1)
         XCTAssertEqual(localFeedLoader.numberOfCallCount(), 0)
     }
+    
+    func test_RemoteFeedLoader_FetchDataFaile_FallBackTo_LocalFeedLoader() {
+        let remoteFeedLoader = self.anyFeedLoader()
+        let localFeedLoader = self.anyFeedLoader()
+        
+        let removeWithLocalFallbackFeedLoader = remoteFeedLoader.fallback(localFeedLoader)
+        
+        removeWithLocalFallbackFeedLoader.fetchFeed { _ in }
+        
+        remoteFeedLoader.mockFailed()
+        localFeedLoader.mockSuccess()
+        XCTAssertEqual(remoteFeedLoader.numberOfCallCount(), 1)
+        XCTAssertEqual(localFeedLoader.numberOfCallCount(), 1)
+    }
+    
+ 
 }
 
 extension TestFallbackableFeedLoader {
     
     class AnyFeedLoader: FeedLoader, Equatable {
+        enum AnyError: Error {
+            case any
+        }
         
         private var requests: [(Result<[FeedItem], Error>) -> Void] = []
         
@@ -78,9 +97,18 @@ extension TestFallbackableFeedLoader {
         func mockSuccess() {
             self.requests[0](.success([]))
         }
+        
+        func mockFailed() {
+            self.requests[0](.failure(anyError()))
+        }
+        func anyError() -> Error {
+            AnyError.any
+        }
     }
     
     func anyFeedLoader() -> AnyFeedLoader {
         AnyFeedLoader()
     }
+    
+    
 }
