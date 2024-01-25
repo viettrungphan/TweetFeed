@@ -35,6 +35,8 @@
 		22E969BA2B62093F008F9D00 /* TweetFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969B92B62093F008F9D00 /* TweetFeedViewModel.swift */; };
 		22E969BB2B62094F008F9D00 /* TweetFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969B92B62093F008F9D00 /* TweetFeedViewModel.swift */; };
 		22E969BE2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BD2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift */; };
+		22E969C02B621AF8008F9D00 /* FallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */; };
+		22E969C12B621B01008F9D00 /* FallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,7 @@
 		22E969B42B6201C5008F9D00 /* TestTweetFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTweetFeedViewModel.swift; sourceTree = "<group>"; };
 		22E969B92B62093F008F9D00 /* TweetFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedViewModel.swift; sourceTree = "<group>"; };
 		22E969BD2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFallbackableFeedLoader.swift; sourceTree = "<group>"; };
+		22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackableFeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,7 @@
 				22E9699F2B60110A008F9D00 /* RemoteFeedLoader.swift */,
 				22E969AE2B60FE93008F9D00 /* Storage.swift */,
 				22E969B12B610578008F9D00 /* LocalFeedLoader.swift */,
+				22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */,
 			);
 			path = FeedLoader;
 			sourceTree = "<group>";
@@ -304,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2212BAB72B5FFF09006FCF8E /* ViewController.swift in Sources */,
+				22E969C02B621AF8008F9D00 /* FallbackableFeedLoader.swift in Sources */,
 				2212BAB32B5FFF09006FCF8E /* AppDelegate.swift in Sources */,
 				22E969BA2B62093F008F9D00 /* TweetFeedViewModel.swift in Sources */,
 				22E9699A2B600F4A008F9D00 /* FeedLoader.swift in Sources */,
@@ -326,6 +331,7 @@
 				22E969BE2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift in Sources */,
 				22E9699D2B601017008F9D00 /* FeedItem.swift in Sources */,
 				22E969932B60005B008F9D00 /* TestRemoteFeedLoader.swift in Sources */,
+				22E969C12B621B01008F9D00 /* FallbackableFeedLoader.swift in Sources */,
 				22E969A42B60124F008F9D00 /* NetworkingMock.swift in Sources */,
 				22E969BB2B62094F008F9D00 /* TweetFeedViewModel.swift in Sources */,
 				22E969B32B61058A008F9D00 /* LocalFeedLoader.swift in Sources */,

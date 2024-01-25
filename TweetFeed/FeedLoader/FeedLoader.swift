@@ -10,3 +10,4 @@ import Foundation
 protocol FeedLoader {
     func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>)->Void)
 }
+
