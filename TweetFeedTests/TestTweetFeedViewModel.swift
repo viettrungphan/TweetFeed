@@ -7,30 +7,28 @@
 
 import XCTest
 
-enum TweetError: Error {
-    case any
-}
 
 final class TweetFeedViewModel {
-    var mockIsSuccess = false
-    func loadFeed(onComplete: (Result<[FeedItem], Error>) -> Void) {
-        if mockIsSuccess {
-            onComplete(.success([]))
-        } else {
-            onComplete(.failure(TweetError.any))
-        }
+    
+    private let feedLoader: FeedLoader
+    
+    init(feedLoader: FeedLoader) {
+        self.feedLoader = feedLoader
+    }
+    
+    func loadFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
+        self.feedLoader.fetchFeed(onComplete: onComplete)
     }
 }
 
 final class TestTweetFeedViewModel: XCTestCase {
     func test_Init_Should_Success() {
-        let viewModel = self.makeSUT()
+        let viewModel = self.makeSUT(feedLoader: self.emptyFeedLoader())
         XCTAssertNotNil(viewModel)
     }
     
     func test_LoadFeed_Success() {
-        let viewModel = TweetFeedViewModel()
-        viewModel.mockIsSuccess = true
+        let viewModel = self.makeSUT(feedLoader: self.emptyFeedLoader())
         let exp = self.expectation(description: "Expect load feed success")
         
         viewModel.loadFeed(onComplete:{ result in
@@ -48,8 +46,7 @@ final class TestTweetFeedViewModel: XCTestCase {
     }
     
     func test_LoadFeed_Failed() {
-        let viewModel = self.makeSUT()
-        viewModel.mockIsSuccess = false
+        let viewModel = self.makeSUT(feedLoader: self.failedFeedLoader())
         let exp = self.expectation(description: "Expect load feed failed")
         
         viewModel.loadFeed(onComplete:{ result in
@@ -66,9 +63,35 @@ final class TestTweetFeedViewModel: XCTestCase {
     }
 }
 
+//MARK: - Helper methods
 extension TestTweetFeedViewModel {
-    func makeSUT() -> TweetFeedViewModel {
-        let viewModel = TweetFeedViewModel()
+    
+    private enum TweetError: Error {
+        case any
+    }
+    
+    private class EmptyFeedLoader: FeedLoader {
+        func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
+            onComplete(.success([]))
+        }
+    }
+    
+    private class FailedFeedLoader: FeedLoader {
+        func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
+            onComplete(.failure(TweetError.any))
+        }
+    }
+    
+    func makeSUT(feedLoader:FeedLoader) -> TweetFeedViewModel {
+        let viewModel = TweetFeedViewModel(feedLoader: feedLoader)
         return viewModel
+    }
+    
+    func emptyFeedLoader() -> FeedLoader {
+        EmptyFeedLoader()
+    }
+    
+    func failedFeedLoader() -> FeedLoader {
+        FailedFeedLoader()
     }
 }
