@@ -69,7 +69,27 @@ final class TestFallbackableFeedLoader: XCTestCase {
         XCTAssertEqual(localFeedLoader.numberOfCallCount(), 1)
     }
     
- 
+    func test_RemoteFeedLoader_FetchDataSuccess_ReceiveSuccess_Data() {
+        let remoteFeedLoader = self.anyFeedLoader()
+        let localFeedLoader = self.anyFeedLoader()
+        
+        let removeWithLocalFallbackFeedLoader = remoteFeedLoader.fallback(localFeedLoader)
+        
+        var callbackData:[FeedItem]?
+        
+        removeWithLocalFallbackFeedLoader.fetchFeed { result in
+            switch result {
+            case .success(let feed):
+                callbackData = feed
+            case .failure(_):
+                assert(true, "Should not fall here")
+            }
+        }
+        
+        remoteFeedLoader.mockSuccess()
+        XCTAssertNotNil(callbackData)
+    }
+
 }
 
 extension TestFallbackableFeedLoader {
