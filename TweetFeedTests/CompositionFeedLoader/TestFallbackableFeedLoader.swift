@@ -28,8 +28,9 @@ final class FallbackableFeedLoader: FeedLoader {
             }
         }
     }
-    
-    
+}
+
+extension FeedLoader {
     func fallback(_ fallback: FeedLoader) -> FallbackableFeedLoader {
         FallbackableFeedLoader(primaryFeedLoader: self, fallbackFeedLoader: fallback)
     }
@@ -40,11 +41,26 @@ final class TestFallbackableFeedLoader: XCTestCase {
         let feedLoader = FallbackableFeedLoader(primaryFeedLoader: self.anyFeedLoader(), fallbackFeedLoader: self.anyFeedLoader())
         XCTAssertNotNil(feedLoader)
     }
+    
+    func test_RemoteFeedLoader_FetchDataSuccess_ShouldNot_FallBackTo_LocalFeedLoader() {
+        let remoteFeedLoader = self.anyFeedLoader()
+        let localFeedLoader = self.anyFeedLoader()
+        
+        let removeWithLocalFallbackFeedLoader = remoteFeedLoader.fallback(localFeedLoader)
+        
+        removeWithLocalFallbackFeedLoader.fetchFeed { _ in }
+        
+        remoteFeedLoader.mockSuccess()
+        XCTAssertEqual(remoteFeedLoader.numberOfCallCount(), 1)
+        XCTAssertEqual(localFeedLoader.numberOfCallCount(), 0)
+    }
 }
 
 extension TestFallbackableFeedLoader {
     
     class AnyFeedLoader: FeedLoader, Equatable {
+        
+        private var requests: [(Result<[FeedItem], Error>) -> Void] = []
         
         static func == (lhs: AnyFeedLoader, rhs: AnyFeedLoader) -> Bool {
             lhs.id == rhs.id
@@ -52,6 +68,15 @@ extension TestFallbackableFeedLoader {
         private let id = UUID()
         
         func fetchFeed(onComplete: @escaping (Result<[FeedItem], Error>) -> Void) {
+            requests.append(onComplete)
+        }
+        
+        func numberOfCallCount() -> Int {
+            return requests.count
+        }
+        
+        func mockSuccess() {
+            self.requests[0](.success([]))
         }
     }
     
