@@ -90,7 +90,7 @@ final class TestFallbackableFeedLoader: XCTestCase {
         XCTAssertNotNil(callbackData)
     }
     
-    func test_RemoteFeedLoader_FetchDataFail_LocalFeedLoader_FetchDataSuccess_ReceiveSuccess_Data() {
+    func test_RemoteFeedLoader_FetchDataFail_LocalFeedLoader_FetchDataSuccess_Receive_Success_Data() {
         let remoteFeedLoader = self.anyFeedLoader()
         let localFeedLoader = self.anyFeedLoader()
         
@@ -109,6 +109,27 @@ final class TestFallbackableFeedLoader: XCTestCase {
         remoteFeedLoader.mockFailed()
         localFeedLoader.mockSuccess()
         XCTAssertNotNil(callbackData)
+    }
+    
+    func test_RemoteFeedLoader_FetchDataFail_LocalFeedLoader_FetchDataFail_Receive_Error() {
+        let remoteFeedLoader = self.anyFeedLoader()
+        let localFeedLoader = self.anyFeedLoader()
+        
+        let removeWithLocalFallbackFeedLoader = remoteFeedLoader.fallback(localFeedLoader)
+        
+        var callbackError:Error?
+        
+        removeWithLocalFallbackFeedLoader.fetchFeed { result in
+            switch result {
+            case .success(_):
+                assert(true, "Should not fall here")
+            case .failure(let error):
+                callbackError = error
+            }
+        }
+        remoteFeedLoader.mockFailed()
+        localFeedLoader.mockFailed()
+        XCTAssertNotNil(callbackError)
     }
 
 }
