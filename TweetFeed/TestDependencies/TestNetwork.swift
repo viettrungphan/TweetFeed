@@ -15,6 +15,10 @@ final class TestNetwork: FeedLoaderNetworking {
     }
     
     func dummyFeedItem() -> [FeedItem] {
-        [FeedItem(id: UUID()), FeedItem(id: UUID())]
+        [
+            FeedItem(id: UUID(), title: "Test title", subTitle: "The very quick brown fox, jump over the lazy dog", image: "star"),
+            FeedItem(id: UUID(), title: "Can I pass the final interview?", subTitle: "Let's see how good you are first 😆", image: "sun.max")
+        ]
     }
 }
+

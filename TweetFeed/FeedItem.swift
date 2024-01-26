@@ -9,4 +9,7 @@ import Foundation
 
 struct FeedItem: Decodable {
     let id: UUID
+    let title: String
+    let subTitle: String
+    let image: String
 }

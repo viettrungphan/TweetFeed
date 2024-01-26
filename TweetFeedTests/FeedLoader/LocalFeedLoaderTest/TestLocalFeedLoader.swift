@@ -93,7 +93,7 @@ extension TestLocalFeedLoader {
     }
     
     func anyFeedItem() -> FeedItem {
-        FeedItem(id: UUID())
+        FeedItem(id: UUID(), title: "", subTitle: "", image: "sun.max")
     }
     
     func mockLocalData() -> [FeedItem] {

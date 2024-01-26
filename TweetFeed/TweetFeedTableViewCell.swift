@@ -12,9 +12,9 @@ final class TweetFeedTableViewCell: UITableViewCell {
     
     func configCell(feed: FeedItem) {
         var content = self.defaultContentConfiguration()
-        content.image = UIImage(systemName: "star")
-        content.text = "John Doe"
-        content.secondaryText = "Hello word"
+        content.image = UIImage(systemName: feed.image)
+        content.text = feed.title
+        content.secondaryText = feed.subTitle
         self.contentConfiguration = content
     }
 

@@ -35,7 +35,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let feed):
                 self.tableView.reloadTableView(feed: feed)
-            case .failure(let error):
+            case .failure(_):
                 self.tableView.showEmptyScreenIfNeeded()
             }
         }
