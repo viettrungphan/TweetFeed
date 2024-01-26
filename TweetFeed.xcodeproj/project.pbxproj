@@ -37,6 +37,10 @@
 		22E969BE2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BD2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift */; };
 		22E969C02B621AF8008F9D00 /* FallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */; };
 		22E969C12B621B01008F9D00 /* FallbackableFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */; };
+		22E969C42B637CCA008F9D00 /* TweetFeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969C32B637CCA008F9D00 /* TweetFeedTableView.swift */; };
+		22E969C62B638005008F9D00 /* TweetFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969C52B638005008F9D00 /* TweetFeedTableViewCell.swift */; };
+		22E969C92B6382BD008F9D00 /* TestStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969C82B6382BD008F9D00 /* TestStorage.swift */; };
+		22E969CB2B6382E3008F9D00 /* TestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E969CA2B6382E3008F9D00 /* TestNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		22E969B92B62093F008F9D00 /* TweetFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedViewModel.swift; sourceTree = "<group>"; };
 		22E969BD2B6209DD008F9D00 /* TestFallbackableFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFallbackableFeedLoader.swift; sourceTree = "<group>"; };
 		22E969BF2B621AF8008F9D00 /* FallbackableFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackableFeedLoader.swift; sourceTree = "<group>"; };
+		22E969C32B637CCA008F9D00 /* TweetFeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedTableView.swift; sourceTree = "<group>"; };
+		22E969C52B638005008F9D00 /* TweetFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedTableViewCell.swift; sourceTree = "<group>"; };
+		22E969C82B6382BD008F9D00 /* TestStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStorage.swift; sourceTree = "<group>"; };
+		22E969CA2B6382E3008F9D00 /* TestNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,12 +124,15 @@
 		2212BAB12B5FFF09006FCF8E /* TweetFeed */ = {
 			isa = PBXGroup;
 			children = (
+				22E969C72B6382A5008F9D00 /* TestDependencies */,
 				22E969B82B62092D008F9D00 /* ViewModel */,
 				2212BAB22B5FFF09006FCF8E /* AppDelegate.swift */,
 				2212BAB42B5FFF09006FCF8E /* SceneDelegate.swift */,
 				22E969A22B601223008F9D00 /* Networking */,
 				22E969982B600F40008F9D00 /* FeedLoader */,
 				2212BAB62B5FFF09006FCF8E /* ViewController.swift */,
+				22E969C32B637CCA008F9D00 /* TweetFeedTableView.swift */,
+				22E969C52B638005008F9D00 /* TweetFeedTableViewCell.swift */,
 				22E9699B2B600FFE008F9D00 /* FeedItem.swift */,
 				2212BAB82B5FFF09006FCF8E /* Main.storyboard */,
 				2212BABB2B5FFF0B006FCF8E /* Assets.xcassets */,
@@ -212,6 +223,15 @@
 				22E969AA2B60FE4F008F9D00 /* RemoteFeedLoaderTest */,
 			);
 			path = FeedLoader;
+			sourceTree = "<group>";
+		};
+		22E969C72B6382A5008F9D00 /* TestDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				22E969C82B6382BD008F9D00 /* TestStorage.swift */,
+				22E969CA2B6382E3008F9D00 /* TestNetwork.swift */,
+			);
+			path = TestDependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,7 +335,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E969C42B637CCA008F9D00 /* TweetFeedTableView.swift in Sources */,
+				22E969C62B638005008F9D00 /* TweetFeedTableViewCell.swift in Sources */,
 				2212BAB72B5FFF09006FCF8E /* ViewController.swift in Sources */,
+				22E969C92B6382BD008F9D00 /* TestStorage.swift in Sources */,
 				22E969C02B621AF8008F9D00 /* FallbackableFeedLoader.swift in Sources */,
 				2212BAB32B5FFF09006FCF8E /* AppDelegate.swift in Sources */,
 				22E969BA2B62093F008F9D00 /* TweetFeedViewModel.swift in Sources */,
@@ -325,6 +348,7 @@
 				22E969A62B601354008F9D00 /* Network.swift in Sources */,
 				22E969AF2B60FE93008F9D00 /* Storage.swift in Sources */,
 				22E969A02B60110A008F9D00 /* RemoteFeedLoader.swift in Sources */,
+				22E969CB2B6382E3008F9D00 /* TestNetwork.swift in Sources */,
 				2212BAB52B5FFF09006FCF8E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
