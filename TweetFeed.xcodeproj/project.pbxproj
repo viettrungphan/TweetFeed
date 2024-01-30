@@ -64,6 +64,7 @@
 		2212BAC02B5FFF0B006FCF8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2212BAC52B5FFF0B006FCF8E /* TweetFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2212BAC92B5FFF0B006FCF8E /* TweetFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFeedTests.swift; sourceTree = "<group>"; };
+		2285CFA72B68A8520058800A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22E969922B60005B008F9D00 /* TestRemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRemoteFeedLoader.swift; sourceTree = "<group>"; };
 		22E969952B60040B008F9D00 /* XCTest+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		22E969992B600F4A008F9D00 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		2212BAA62B5FFF09006FCF8E = {
 			isa = PBXGroup;
 			children = (
+				2285CFA72B68A8520058800A /* README.md */,
 				2212BAB12B5FFF09006FCF8E /* TweetFeed */,
 				2212BAC82B5FFF0B006FCF8E /* TweetFeedTests */,
 				2212BAB02B5FFF09006FCF8E /* Products */,
